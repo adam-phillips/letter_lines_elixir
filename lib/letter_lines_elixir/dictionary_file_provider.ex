@@ -10,10 +10,6 @@ defmodule LetterLinesElixir.DictionaryFileProvider do
   end
 
   defp impl do
-    Application.get_env(
-      :letter_lines_elixir,
-      :dictionary_file_provider,
-      FileSystemFileProvider
-    )
+    Application.get_env(:letter_lines_elixir, :dictionary_file_provider, FileSystemFileProvider)
   end
 end
