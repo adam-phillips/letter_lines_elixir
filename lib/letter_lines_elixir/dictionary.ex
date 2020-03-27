@@ -1,6 +1,6 @@
 defmodule LetterLinesElixir.Dictionary do
   def words_with_letters(letters) do
-    get_file_words
+    get_file_words()
     |> Stream.filter(&contains_all_letters?(&1, letters))
     |> Enum.into([])
   end

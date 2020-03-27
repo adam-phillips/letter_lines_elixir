@@ -26,7 +26,10 @@ defmodule LetterLinesElixir.DictionaryTest do
       # `stub` here means we don't care how many times the mock is called
       # `expect` works fine, but indicates the mock will only be called once
       # and errors if it's not
-      stub(Mock, :get_file_stream, fn -> string_to_stream(Enum.join(words, "\n")) end)
+      stub(Mock, :get_file_stream, fn ->
+        string_to_stream(Enum.join(words, "\n"))
+      end)
+
       assert ~w(DESK PHONE PEN) == Dictionary.words_with_letters(["E"])
       assert ~w(PHONE PEN) == Dictionary.words_with_letters(["E", "P"])
     end
