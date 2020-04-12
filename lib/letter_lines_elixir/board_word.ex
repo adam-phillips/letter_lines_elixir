@@ -36,8 +36,8 @@ defmodule LetterLinesElixir.BoardWord do
     Given a BoardWord, determine if a letter exists at a given coordinate. If a letter is present, it is returned.
     Otherwise return `nil`
   """
-  def get_letter_at(%BoardWord{direction: :h, y: y1}, _x, y2) when y1 != y2, do: nil
-  def get_letter_at(%BoardWord{direction: :v, x: x1}, x2, _y) when x1 != x2, do: nil
+  def get_letter_at(%BoardWord{direction: :h, y: y1}, _x, y2) when y1 != y2, do: :none
+  def get_letter_at(%BoardWord{direction: :v, x: x1}, x2, _y) when x1 != x2, do: :none
 
   def get_letter_at(%BoardWord{direction: :h, word: word, x: x1, size: size}, x2, _y) when x2 >= x1 and x2 < size + x1,
     do: String.at(word, x2 - x1)
@@ -45,5 +45,5 @@ defmodule LetterLinesElixir.BoardWord do
   def get_letter_at(%BoardWord{direction: :v, word: word, y: y1, size: size}, _x, y2) when y2 >= y1 and y2 < size + y1,
     do: String.at(word, y2 - y1)
 
-  def get_letter_at(_, _, _), do: nil
+  def get_letter_at(_, _, _), do: :none
 end
