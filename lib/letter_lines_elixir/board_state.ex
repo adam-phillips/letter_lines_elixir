@@ -13,7 +13,7 @@ defmodule LetterLinesElixir.BoardState do
   def new(words) do
     {max_x, max_y} = BoardWord.get_max_size(words)
 
-    for x <- 0..(max_x), y <- 0..(max_y) do
+    for x <- 0..max_x, y <- 0..max_y do
       _ = do_get_letter_at(words, x, y)
     end
 
@@ -30,9 +30,9 @@ defmodule LetterLinesElixir.BoardState do
   end
 
   def print_board(%BoardState{words: words, width: width, height: height}) do
-#    for x <- 0..{width -1} do
-#
-#    end
+    #    for x <- 0..{width -1} do
+    #
+    #    end
   end
 
   defp do_get_letter_at(words, x, y) do
@@ -41,9 +41,9 @@ defmodule LetterLinesElixir.BoardState do
     |> Enum.reject(&(&1 == :none))
     |> Enum.uniq()
     |> case do
-         [] -> :none
-         [a] -> a
-         [_ | _] = list -> raise "Multiple letters found at #{x}, #{y}: #{inspect(list)}"
-       end
+      [] -> :none
+      [a] -> a
+      [_ | _] = list -> raise "Multiple letters found at #{x}, #{y}: #{inspect(list)}"
+    end
   end
 end

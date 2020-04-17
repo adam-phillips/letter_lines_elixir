@@ -4,7 +4,7 @@ defmodule LetterLinesElixir.BoardStateTest do
   alias LetterLinesElixir.BoardState
   alias LetterLinesElixir.BoardWord
 
-  #TODO: Fix the empty first row
+  # TODO: Fix the empty first row
   #   0 1 2 3 4 5
   # 0
   # 1           b
@@ -13,19 +13,19 @@ defmodule LetterLinesElixir.BoardStateTest do
   # 4 u     r   c
   # 5 b r u n c h
   @board_words [
-                 BoardWord.new(5, 1, :v, "bunch"),
-                 BoardWord.new(0, 2, :v, "chub"),
-                 BoardWord.new(3, 2, :v, "burn"),
-                 BoardWord.new(0, 2, :h, "curb"),
-                 BoardWord.new(0, 5, :h, "brunch")
-               ]
+    BoardWord.new(5, 1, :v, "bunch"),
+    BoardWord.new(0, 2, :v, "chub"),
+    BoardWord.new(3, 2, :v, "burn"),
+    BoardWord.new(0, 2, :h, "curb"),
+    BoardWord.new(0, 5, :h, "brunch")
+  ]
   @bad_board_words [
-                 BoardWord.new(5, 0, :v, "bunch"),
-                 BoardWord.new(5, 0, :v, "chub"),
-                 BoardWord.new(3, 2, :v, "burn"),
-                 BoardWord.new(4, 2, :h, "curb"),
-                 BoardWord.new(5, 0, :h, "brunch")
-               ]
+    BoardWord.new(5, 0, :v, "bunch"),
+    BoardWord.new(5, 0, :v, "chub"),
+    BoardWord.new(3, 2, :v, "burn"),
+    BoardWord.new(4, 2, :h, "curb"),
+    BoardWord.new(5, 0, :h, "brunch")
+  ]
 
   describe "new/1" do
     test "returns proper width and height values" do
@@ -38,7 +38,9 @@ defmodule LetterLinesElixir.BoardStateTest do
     end
 
     test "will raise on a bad BoardState" do
-      assert_raise RuntimeError, "Multiple letters found at 5, 0: [\"b\", \"c\"]", fn -> BoardState.new(@bad_board_words) end
+      assert_raise RuntimeError, "Multiple letters found at 5, 0: [\"b\", \"c\"]", fn ->
+        BoardState.new(@bad_board_words)
+      end
     end
   end
 
@@ -53,7 +55,6 @@ defmodule LetterLinesElixir.BoardStateTest do
     end
 
     test "returns the letter when found at given location" do
-
     end
 
     test "raises when multiple letters are found at the same location" do
@@ -62,7 +63,10 @@ defmodule LetterLinesElixir.BoardStateTest do
         width: 6,
         height: 6
       }
-      assert_raise RuntimeError, "Multiple letters found at 5, 0: [\"b\", \"c\"]", fn -> BoardState.get_letter_at(board_state, 5, 0) end
+
+      assert_raise RuntimeError, "Multiple letters found at 5, 0: [\"b\", \"c\"]", fn ->
+        BoardState.get_letter_at(board_state, 5, 0)
+      end
     end
   end
 end
