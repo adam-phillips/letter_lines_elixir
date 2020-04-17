@@ -1,0 +1,3 @@
+alias LetterLinesElixir.BoardState
+alias LetterLinesElixir.BoardWord
+alias LetterLinesElixir.GameState
