@@ -17,7 +17,7 @@ defmodule LetterLinesElixir.BoardWord do
   end
 
   @doc """
-    Given a list of words, return the maximum x and y values for the size of the Board beginning from (0, 0)
+  Given a list of words, return the maximum x and y values for the size of the Board beginning from (0, 0)
   """
   def get_max_size(words) when is_list(words) do
     Enum.reduce(words, {0, 0}, fn word, {current_max_x, current_max_y} ->
@@ -27,14 +27,14 @@ defmodule LetterLinesElixir.BoardWord do
   end
 
   @doc """
-    Return the x/y coordinates for the last letter in a word
+  Return the x/y coordinates for the last letter in a word
   """
   def get_max_size(%BoardWord{x: x, y: y, direction: :h, word: word}), do: {x + String.length(word) - 1, y}
   def get_max_size(%BoardWord{x: x, y: y, direction: :v, word: word}), do: {x, y + String.length(word) - 1}
 
   @doc """
-    Given a BoardWord, determine if a letter exists at a given coordinate. If a letter is present, it is returned.
-    Otherwise return `nil`
+  Given a BoardWord, determine if a letter exists at a given coordinate. If a letter is present, it is returned.
+  Otherwise return `nil`
   """
   def get_letter_at(%BoardWord{direction: :h, y: y1}, _x, y2) when y1 != y2, do: :none
   def get_letter_at(%BoardWord{direction: :v, x: x1}, x2, _y) when x1 != x2, do: :none
