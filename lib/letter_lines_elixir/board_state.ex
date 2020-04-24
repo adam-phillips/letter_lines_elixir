@@ -17,6 +17,16 @@ defmodule LetterLinesElixir.BoardState do
       _ = do_get_letter_at(words, x, y)
     end
 
+    if !Enum.any?(0..max_x, fn x -> do_get_letter_at(words, x, 0) != :none end) do
+      raise "No letters found in first row"
+    end
+
+    if !Enum.any?(0..max_y, fn y -> do_get_letter_at(words, 0, y) != :none end) do
+      raise "No letters found in first column"
+    end
+
+    Enum.each(words, &check_inappropriate_touching(&1, words))
+
     # Add one to max to handle zero based layout
     %BoardState{
       width: max_x + 1,
@@ -44,6 +54,26 @@ defmodule LetterLinesElixir.BoardState do
       [] -> :none
       [a] -> a
       [_ | _] = list -> raise "Multiple letters found at #{x}, #{y}: #{inspect(list)}"
+    end
+  end
+
+  defp check_inappropriate_touching(%BoardWord{direction: :h, x: x, y: y, word: word, size: size}, words) do
+    if do_get_letter_at(words, x - 1, y) != :none do
+      raise "Letter found before horizontal word: #{word}"
+    end
+
+    if do_get_letter_at(words, x + size, y) != :none do
+      raise "Letter found after horizontal word: #{word}"
+    end
+  end
+
+  defp check_inappropriate_touching(%BoardWord{direction: :v, x: x, y: y, word: word, size: size}, words) do
+    if do_get_letter_at(words, x, y - 1) != :none do
+      raise "Letter found before vertical word: #{word}"
+    end
+
+    if do_get_letter_at(words, x, y + size) != :none do
+      raise "Letter found after vertical word: #{word}"
     end
   end
 end
