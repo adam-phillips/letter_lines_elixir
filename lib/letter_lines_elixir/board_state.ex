@@ -1,6 +1,7 @@
 defmodule LetterLinesElixir.BoardState do
   @moduledoc false
-  alias LetterLinesElixir.{BoardState, BoardWord}
+  alias LetterLinesElixir.BoardState
+  alias LetterLinesElixir.BoardWord
 
   defstruct [:width, :height, :words]
 
@@ -39,10 +40,20 @@ defmodule LetterLinesElixir.BoardState do
     do_get_letter_at(words, x, y)
   end
 
-  def print_board(%BoardState{words: words, width: width, height: height}) do
-    #    for x <- 0..{width -1} do
-    #
-    #    end
+  def print_board(%BoardState{width: width, height: height} = board_state) do
+    for y <- 0..(height - 1) do
+      0..(width - 1)
+      |> Enum.map(&get_display_letter_at(board_state, &1, y))
+      |> Enum.join("")
+      |> IO.puts()
+    end
+  end
+
+  defp letter_revealed?(%BoardState{words: words}, x, y) do
+    words
+    |> Enum.reject(&(BoardWord.get_letter_at(&1, x, y) == :none))
+    |> Enum.filter(& &1.revealed?)
+    |> Kernel.!=([])
   end
 
   defp do_get_letter_at(words, x, y) do
@@ -54,6 +65,16 @@ defmodule LetterLinesElixir.BoardState do
       [] -> :none
       [a] -> a
       [_ | _] = list -> raise "Multiple letters found at #{x}, #{y}: #{inspect(list)}"
+    end
+  end
+
+  defp get_display_letter_at(%BoardState{} = board_state, x, y) do
+    letter = BoardState.get_letter_at(board_state, x, y)
+
+    cond do
+      letter == :none -> "#"
+      !letter_revealed?(board_state, x, y) -> "."
+      true -> letter
     end
   end
 
