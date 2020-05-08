@@ -21,9 +21,17 @@ defmodule LetterLinesElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mix_test_watch, "~> 1.0.2", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
+      # Static analysis and linting
       {:credo, "~> 1.3.0"},
+      # Static analysis
+      {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
+      # Test coverage
+      {:excoveralls, "~> 0.12.13", only: :test},
+      # Run checks before commit and push
+      {:git_hooks, "~> 0.4.1", only: :dev, runtime: false},
+      # Continuous test running
+      {:mix_test_watch, "~> 1.0.2", only: :dev, runtime: false},
+      # Mocking for tests
       {:mox, "~> 0.5", only: :test}
     ]
   end
