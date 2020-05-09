@@ -5,6 +5,7 @@ defmodule LetterLinesElixir.BoardState do
 
   defstruct [:width, :height, :words]
 
+  # Guard to check for adjacent characters
   defguard off_by_one(n1, n2) when (n1 - n2) in [-1, 1]
 
   @type t :: %BoardState{
@@ -110,11 +111,11 @@ defmodule LetterLinesElixir.BoardState do
   defp do_check_parallel_touching(%BoardWord{direction: d1}, %BoardWord{direction: d2}) when d1 != d2, do: :ok
 
   defp do_check_parallel_touching(%BoardWord{direction: :h, y: y1}, %BoardWord{direction: :h, y: y2})
-       when y1 - y2 == 0 or y1 - y2 < -1 or y1 - y2 > 1,
+       when not off_by_one(y1, y2),
        do: :ok
 
   defp do_check_parallel_touching(%BoardWord{direction: :v, x: x1}, %BoardWord{direction: :v, x: x2})
-       when x1 - x2 == 0 or x1 - x2 < -1 or x1 - x2 > 1,
+       when not off_by_one(x1, x2),
        do: :ok
 
   defp do_check_parallel_touching(
