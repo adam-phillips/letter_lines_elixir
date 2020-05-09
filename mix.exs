@@ -26,7 +26,7 @@ defmodule LetterLinesElixir.MixProject do
       # Static analysis
       {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
       # Test coverage
-      {:excoveralls, "~> 0.12.13", only: :test},
+      {:excoveralls, "~> 0.12.3", only: :test},
       # Run checks before commit and push
       {:git_hooks, "~> 0.4.1", only: :dev, runtime: false},
       # Continuous test running
