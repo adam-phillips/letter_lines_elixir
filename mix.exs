@@ -7,7 +7,15 @@ defmodule LetterLinesElixir.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases(),
+      preferred_cli_env: [
+        credo: :test,
+        coveralls: :test,
+        "coveralls.html": :test,
+        coverage_report: :test
+      ],
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -34,5 +42,30 @@ defmodule LetterLinesElixir.MixProject do
       # Mocking for tests
       {:mox, "~> 0.5", only: :test}
     ]
+  end
+
+  defp aliases do
+    [
+      compile: "compile --warnings-as-errors",
+      coverage_report: [&coverage_report/1]
+    ]
+  end
+
+  defp coverage_report(_) do
+    Mix.Task.run("coveralls.html")
+
+    open_cmd =
+      case :os.type() do
+        {:win32, _} ->
+          "start"
+
+        {:unix, :darwin} ->
+          "open"
+
+        {:unix, _} ->
+          "xdg-open"
+      end
+
+    System.cmd(open_cmd, ["cover/excoveralls.html"])
   end
 end
