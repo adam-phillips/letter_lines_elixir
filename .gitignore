@@ -23,3 +23,6 @@ erl_crash.dump
 letter_lines_elixir-*.tar
 
 .elixir_ls
+
+# Ignore directory for coverage report
+/cover
