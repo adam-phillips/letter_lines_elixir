@@ -45,7 +45,7 @@ defmodule LetterLinesElixir.BoardState do
     do_get_letter_at(words, x, y)
   end
 
-  # TODO: test using ExUnit.CaptureIO
+  # Do not forget: test using ExUnit.CaptureIO
   def print_board(%BoardState{width: width, height: height} = board_state) do
     for y <- 0..(height - 1) do
       0..(width - 1)

@@ -12,7 +12,7 @@ defmodule LetterLinesElixir.DictionaryTest do
     end
 
     test "trims whitespace from file lines" do
-      # TODO: Add tests to handle mixed case as well
+      # Do not forget: Add tests to handle mixed case as well
       result = do_get_file_words("ABC\n DEF\n GHI ")
 
       assert result == ["ABC", "DEF", "GHI"]

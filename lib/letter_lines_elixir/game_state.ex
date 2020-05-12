@@ -1,6 +1,7 @@
 defmodule LetterLinesElixir.GameState do
   @moduledoc false
-  alias LetterLinesElixir.{GameState, BoardState}
+  alias LetterLinesElixir.BoardState
+  alias LetterLinesElixir.GameState
 
   defstruct [:letter_list, :board_state, :score, :picked_words]
 
