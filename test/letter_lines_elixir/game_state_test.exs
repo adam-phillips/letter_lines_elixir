@@ -1,7 +1,8 @@
 defmodule LetterLinesElixir.GameStateTest do
   use ExUnit.Case
 
-  alias LetterLinesElixir.{GameState, BoardState}
+  alias LetterLinesElixir.BoardState
+  alias LetterLinesElixir.GameState
 
   test "new/1 returns an initialized game state" do
     letters = ["a", "b", "c"]

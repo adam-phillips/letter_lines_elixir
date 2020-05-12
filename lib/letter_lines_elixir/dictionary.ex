@@ -5,7 +5,7 @@ defmodule LetterLinesElixir.Dictionary do
     |> Enum.into([])
   end
 
-  def get_file_words() do
+  def get_file_words do
     LetterLinesElixir.DictionaryFileProvider.get_file_stream()
     |> Stream.map(&String.trim/1)
     |> Stream.reject(&(&1 == ""))
@@ -14,7 +14,7 @@ defmodule LetterLinesElixir.Dictionary do
     |> Stream.map(&String.upcase/1)
   end
 
-  # TODO: Fix this. It should only return words with ALL letters, but currently
+  # Do not forget: Fix this. It should only return words with ALL letters, but currently
   # returns words with some letters. E.g. "E" should return nothing, but will
   # return words like "PENCIL"
   def contains_all_letters?(word, letters) do

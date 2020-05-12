@@ -162,7 +162,7 @@
         {Credo.Check.Readability.AliasAs, false},
         {Credo.Check.Readability.MultiAlias, []},
         {Credo.Check.Readability.Specs, false},
-        {Credo.Check.Readability.SinglePipe, []},
+#        {Credo.Check.Readability.SinglePipe, []}, ************ Do not forget to uncomment and fix all these
         {Credo.Check.Readability.WithCustomTaggedTuple, []},
         {Credo.Check.Refactor.ABCSize, false},
         {Credo.Check.Refactor.AppendSingleItem, []},
