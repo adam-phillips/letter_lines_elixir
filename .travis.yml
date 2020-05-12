@@ -1,0 +1,18 @@
+matrix:
+  include:
+    - language: elixir
+      elixir:
+        - 1.10.2
+      otp_release:
+        - 22.3
+      addons:
+        postgresql: "9.4"
+      cache:
+        directories:
+          - deps
+          - _build
+      script:
+        - mix test
+        - mix format --check-formatted
+        - mix credo --strict
+        - mix dialyzer --halt-exit-status
