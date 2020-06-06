@@ -125,7 +125,7 @@ defmodule LetterLinesElixir.BoardState do
     if Range.disjoint?(y1..(y1 + size1), y2..(y2 + size2 - 1)) do
       :ok
     else
-      raise "These two horizontal words are parallel and touching: #{word1} and #{word2}"
+      raise "These two horizontal words are parallel and touching: #{word1.word} and #{word2.word}"
     end
   end
 
@@ -136,7 +136,7 @@ defmodule LetterLinesElixir.BoardState do
     if Range.disjoint?(x1..(x1 + size1 - 1), x2..(x2 + size2 - 1)) do
       :ok
     else
-      raise "These two vertical words are parallel and touching: #{word1} and #{word2}"
+      raise "These two vertical words are parallel and touching: #{word1.word} and #{word2.word}"
     end
   end
 end

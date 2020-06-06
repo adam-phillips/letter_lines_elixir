@@ -91,7 +91,25 @@ defmodule LetterLinesElixir.BoardStateTest do
       end
     end
 
-    test "will raise if a parallel word is touching another word" do
+    test "will raise if two horizontal, parallel words are touching" do
+      assert_raise RuntimeError, "These two horizontal words are parallel and touching: urn and burn", fn ->
+        BoardState.new([
+          BoardWord.new(0, 0, :h, "burn"),
+          BoardWord.new(1, 1, :h, "urn")
+        ])
+      end
+    end
+
+    test "will raise if two vertical, parallel words are touching" do
+      assert_raise RuntimeError, "These two vertical words are parallel and touching: urn and burn", fn ->
+        BoardState.new([
+          BoardWord.new(0, 0, :v, "burn"),
+          BoardWord.new(1, 1, :v, "urn")
+        ])
+      end
+    end
+
+    test "at least one word that uses all available letters is present" do
     end
   end
 
@@ -106,6 +124,12 @@ defmodule LetterLinesElixir.BoardStateTest do
     end
 
     test "returns the letter when found at given location" do
+      board_state = BoardState.new(@board_words)
+      assert "b" = BoardState.get_letter_at(board_state, 5, 0)
+      assert "c" = BoardState.get_letter_at(board_state, 0, 1)
+      assert "h" = BoardState.get_letter_at(board_state, 0, 2)
+      assert "n" = BoardState.get_letter_at(board_state, 3, 4)
+      assert "h" = BoardState.get_letter_at(board_state, 5, 4)
     end
 
     test "raises when multiple letters are found at the same location" do
