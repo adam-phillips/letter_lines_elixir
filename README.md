@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/adam-phillips/letter_lines_elixir.svg?branch=master)](https://travis-ci.org/adam-phillips/letter_lines_elixir)
+
 # LetterLinesElixir
 
 **TODO: Add description**
