@@ -4,6 +4,7 @@ defmodule LetterLinesElixir.GameStateTest do
   alias LetterLinesElixir.BoardState
   alias LetterLinesElixir.GameState
 
+  @tag :skip
   test "new/1 returns an initialized game state" do
     letters = ["a", "b", "c"]
     new_game = GameState.new(letters)
