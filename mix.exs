@@ -5,10 +5,14 @@ defmodule LetterLinesElixir.MixProject do
     [
       app: :letter_lines_elixir,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.10.2",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
+      dialyzer: [
+        ignore_warnings: ".dialyzer_ignore.exs",
+        list_unused_filters: true
+      ],
       preferred_cli_env: [
         credo: :test,
         coveralls: :test,
@@ -30,7 +34,7 @@ defmodule LetterLinesElixir.MixProject do
   defp deps do
     [
       # Static analysis and linting
-      {:credo, "~> 1.3.0"},
+      {:credo, "~> 1.4.0", only: :test, runtime: false},
       # Static analysis
       {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
       # Test coverage
@@ -47,7 +51,9 @@ defmodule LetterLinesElixir.MixProject do
   defp aliases do
     [
       compile: "compile --warnings-as-errors",
-      coverage_report: [&coverage_report/1]
+      coverage_report: [&coverage_report/1],
+      "git.check": ["git_hooks.run all"],
+      "hex.version_check": "run --no-start hex_version_check.exs"
     ]
   end
 

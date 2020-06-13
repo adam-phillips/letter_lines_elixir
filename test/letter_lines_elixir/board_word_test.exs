@@ -28,13 +28,13 @@ defmodule LetterLinesElixir.BoardWordTest do
   end
 
   test "get_letter_at/3 returns word letter when found at given coordinate" do
-    assert "n" == BoardWord.new(5, 0, :v, "bunch") |> BoardWord.get_letter_at(5, 2)
+    assert "n" == BoardWord.get_letter_at(BoardWord.new(5, 0, :v, "bunch"), 5, 2)
   end
 
   test "get_letter_at/3 returns nil when no letter is at the given coordinate" do
-    assert :none == BoardWord.new(3, 1, :v, "burn") |> BoardWord.get_letter_at(3, 0)
-    assert :none == BoardWord.new(3, 1, :v, "burn") |> BoardWord.get_letter_at(4, 1)
-    assert :none == BoardWord.new(3, 1, :v, "burn") |> BoardWord.get_letter_at(3, 5)
-    assert :none == BoardWord.new(3, 1, :v, "burn") |> BoardWord.get_letter_at(2, 2)
+    assert :none == BoardWord.get_letter_at(BoardWord.new(3, 1, :v, "burn"), 3, 0)
+    assert :none == BoardWord.get_letter_at(BoardWord.new(3, 1, :v, "burn"), 4, 1)
+    assert :none == BoardWord.get_letter_at(BoardWord.new(3, 1, :v, "burn"), 3, 5)
+    assert :none == BoardWord.get_letter_at(BoardWord.new(3, 1, :v, "burn"), 2, 2)
   end
 end
