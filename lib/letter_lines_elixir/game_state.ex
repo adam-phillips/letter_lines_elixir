@@ -13,7 +13,7 @@ defmodule LetterLinesElixir.GameState do
         }
   def new(board_state) do
     %GameState{
-      # letter_list: letters, #### This should call a BoardState function, find the largest word, and split into list
+      letter_list: BoardState.get_usable_letter_list(board_state),
       board_state: board_state,
       score: 0,
       picked_words: []

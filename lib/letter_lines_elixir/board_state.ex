@@ -41,6 +41,11 @@ defmodule LetterLinesElixir.BoardState do
     }
   end
 
+  def get_usable_letter_list(%BoardState{} = state) do
+    %BoardWord{word: word} = longest_word(state)
+    String.graphemes(word)
+  end
+
   def get_letter_at(%BoardState{words: words}, x, y) do
     do_get_letter_at(words, x, y)
   end
@@ -52,6 +57,20 @@ defmodule LetterLinesElixir.BoardState do
       |> Enum.map(&get_display_letter_at(board_state, &1, y))
       |> Enum.join("")
       |> IO.puts()
+    end
+  end
+
+  def longest_word(%BoardState{words: words}) do
+    longest_word(words)
+  end
+
+  def longest_word([word]), do: word
+
+  def longest_word([%BoardWord{word: word1} = bw1, %BoardWord{word: word2} = bw2 | tail]) do
+    if String.length(word1) > String.length(word2) do
+      longest_word([bw1 | tail])
+    else
+      longest_word([bw2 | tail])
     end
   end
 
