@@ -144,4 +144,10 @@ defmodule LetterLinesElixir.BoardStateTest do
       end
     end
   end
+
+  test "get_usable_letter_list/1 returns all letters from the longest BoardState word" do
+    board_state = BoardState.new(@board_words)
+
+    assert ["b", "r", "u", "n", "c", "h"] = BoardState.get_usable_letter_list(board_state)
+  end
 end
