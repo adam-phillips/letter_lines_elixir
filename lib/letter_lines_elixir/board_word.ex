@@ -1,4 +1,9 @@
 defmodule LetterLinesElixir.BoardWord do
+  @moduledoc """
+  Module for working with a BoardWord. Each BoardWord is aware of the x/y coordinates of the start of its word,
+  whether the word is presented horizontal or vertical, the string value of hte word, whether it has been revealed,
+  and the length of the word
+  """
   alias LetterLinesElixir.BoardWord
 
   defstruct [:x, :y, :direction, :word, :revealed?, :size]

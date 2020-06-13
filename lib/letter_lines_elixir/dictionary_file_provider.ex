@@ -1,9 +1,8 @@
 defmodule LetterLinesElixir.DictionaryFileProvider do
   @moduledoc false
+  @behaviour LetterLinesElixir.DictionaryFileProvider.Behaviour
 
   alias LetterLinesElixir.DictionaryFileProvider.FileSystemFileProvider
-
-  @behaviour LetterLinesElixir.DictionaryFileProvider.Behaviour
 
   def get_file_stream do
     impl().get_file_stream()

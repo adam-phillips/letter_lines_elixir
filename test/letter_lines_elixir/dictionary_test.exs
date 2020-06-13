@@ -43,7 +43,6 @@ defmodule LetterLinesElixir.DictionaryTest do
   def do_get_file_words(string) do
     expect(Mock, :get_file_stream, fn -> string_to_stream(string) end)
 
-    Dictionary.get_file_words()
-    |> Enum.into([])
+    Enum.into(Dictionary.get_file_words(), [])
   end
 end
