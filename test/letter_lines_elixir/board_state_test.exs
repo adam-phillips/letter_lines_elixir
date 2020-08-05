@@ -37,6 +37,10 @@ defmodule LetterLinesElixir.BoardStateTest do
       assert %BoardState{words: ^words} = BoardState.new(@board_words)
     end
 
+    @tag :skip
+    test "rejects duplicate board words" do
+    end
+
     test "will raise when multiple letters are found at the same location" do
       assert_raise RuntimeError, "Multiple letters found at 5, 0: [\"b\", \"c\"]", fn ->
         BoardState.new(@colliding_board_words)
@@ -149,5 +153,13 @@ defmodule LetterLinesElixir.BoardStateTest do
     board_state = BoardState.new(@board_words)
 
     assert ["b", "r", "u", "n", "c", "h"] = BoardState.get_usable_letter_list(board_state)
+  end
+
+  describe "reveal_word/2" do
+    test "given a BoardState and one of its words, the word is set to revealed" do
+    end
+
+    test "given a BoardState and a word it does not contain an error is returned" do
+    end
   end
 end

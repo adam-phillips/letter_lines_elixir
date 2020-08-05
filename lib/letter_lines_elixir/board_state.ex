@@ -54,7 +54,7 @@ defmodule LetterLinesElixir.BoardState do
   def print_board(%BoardState{width: width, height: height} = board_state) do
     for y <- 0..(height - 1) do
       0..(width - 1)
-      |> Enum.map(&get_display_letter_at(board_state, &1, y))
+      |> Enum.map(&get_display_ascii_letter_at(board_state, &1, y))
       |> Enum.join("")
       |> IO.puts()
     end
@@ -71,6 +71,23 @@ defmodule LetterLinesElixir.BoardState do
       longest_word([bw1 | tail])
     else
       longest_word([bw2 | tail])
+    end
+  end
+
+  def get_display_letter_at(%BoardState{} = board_state, x, y) do
+    letter = BoardState.get_letter_at(board_state, x, y)
+
+    cond do
+      letter == :none -> :none
+      !letter_revealed?(board_state, x, y) -> :hidden
+      true -> letter
+    end
+  end
+
+  def reveal_word(%BoardState{words: words} = board_state, word) do
+    case put_in(words, [Access.filter(&match?(%{word: ^word}, &1)), :revealed?], true) do
+      ^words -> {:error, :nothing_revealed}
+      new_words -> %BoardState{board_state | words: new_words}
     end
   end
 
@@ -93,7 +110,7 @@ defmodule LetterLinesElixir.BoardState do
     end
   end
 
-  defp get_display_letter_at(%BoardState{} = board_state, x, y) do
+  defp get_display_ascii_letter_at(%BoardState{} = board_state, x, y) do
     letter = BoardState.get_letter_at(board_state, x, y)
 
     cond do

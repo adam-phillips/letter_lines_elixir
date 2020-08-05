@@ -5,7 +5,7 @@ defmodule LetterLinesElixir do
   alias LetterLinesElixir.BoardState
   alias LetterLinesElixir.BoardWord
 
-  def generate_game() do
+  def generate_game do
     words = [
       BoardWord.new(5, 0, :v, "bunch"),
       BoardWord.new(0, 1, :v, "chub"),
