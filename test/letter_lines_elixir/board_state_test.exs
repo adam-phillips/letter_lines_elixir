@@ -157,9 +157,19 @@ defmodule LetterLinesElixir.BoardStateTest do
 
   describe "reveal_word/2" do
     test "given a BoardState and one of its words, the word is set to revealed" do
+      board_state = BoardState.new(@board_words)
+
+      assert Enum.all?(board_state.words, &(!&1.revealed?))
+      {:ok, board_state} = BoardState.reveal_word(board_state, "bunch")
+
+      assert [%BoardWord{word: "bunch", revealed?: true}] = Enum.filter(board_state.words, & &1.revealed?)
     end
 
     test "given a BoardState and a word it does not contain an error is returned" do
+      board_state = BoardState.new(@board_words)
+
+      assert Enum.all?(board_state.words, &(!&1.revealed?))
+      assert {:error, :nothing_revealed} = BoardState.reveal_word(board_state, "branch")
     end
   end
 end

@@ -85,9 +85,14 @@ defmodule LetterLinesElixir.BoardState do
   end
 
   def reveal_word(%BoardState{words: words} = board_state, word) do
-    case put_in(words, [Access.filter(&match?(%{word: ^word}, &1)), :revealed?], true) do
+    words
+    |> Enum.map(fn
+      %BoardWord{word: ^word} = board_word -> %BoardWord{board_word | revealed?: true}
+      board_word -> board_word
+    end)
+    |> case do
       ^words -> {:error, :nothing_revealed}
-      new_words -> %BoardState{board_state | words: new_words}
+      new_words -> {:ok, %BoardState{board_state | words: new_words}}
     end
   end
 
