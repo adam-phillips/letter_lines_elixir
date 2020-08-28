@@ -51,4 +51,8 @@ defmodule LetterLinesElixir.BoardWord do
     do: String.at(word, y2 - y1)
 
   def get_letter_at(_, _, _), do: :none
+
+  def get_word(%BoardWord{word: word}) do
+    word
+  end
 end
